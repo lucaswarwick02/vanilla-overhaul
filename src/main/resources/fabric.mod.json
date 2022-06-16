@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "lucaswarwick02.ExampleMod"
+      "lucaswarwick02.VanillaOverhaulMod"
     ]
   },
   "mixins": [
