@@ -4,13 +4,13 @@
   "version": "${version}",
 
   "name": "Vanilla Overhaul",
-  "description": "This mod includes a few of my own personal tweaks to the game.",
+  "description": "Change Log: \n - Smelt rotten flesh into leather",
   "authors": [
-    "Me!"
+    "Lucas Warwick (HermitTheFrog)"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://lucaswarwick02.github.io/portfolio/",
+    "sources": "https://github.com/lucaswarwick02/vanilla-overhaul"
   },
 
   "license": "CC0-1.0",
