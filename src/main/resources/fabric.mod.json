@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Vanilla Overhaul",
-  "description": "Change Log: \n- Smelt rotten flesh into leather\n - All items are Unbreakable",
+  "description": "A few changes which I prefer to have in my game, that I'm sharing with you! There are further optional changes which can be enabled inside of the config file. To view the changelog, view the README.md from the project's source!",
   "authors": [
     "Lucas Warwick (HermitTheFrog)"
   ],
