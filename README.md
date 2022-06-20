@@ -7,7 +7,7 @@ The following are the changes that you will find in this mod, these changes are 
 - **Rotten Leather:** Rotten Flesh can be smelted in any furnace into Leather.
 - **Mangrove Roots to Log:** Using 4 Mangrove Roots you can craft 1 Mangrove Log, as the Roots (as of 1.19) can only be used as a fuel
 - **Moss to Grass:** Using 1 Moss Carpet and 1 Dirt block you can craft a Grass block.
-- 
+
 ### Optional Changes
 Optional changes are disabled by default, but can be enabled inside this mod's configuration file, but changing the associated value from `false` to `true`.
 - **Unbreakable Items:** Whenever you attempt to damage an item, it will instantly become unbreakable. This is quite an OP feature, but is good if you dont want to worry about having mending.
