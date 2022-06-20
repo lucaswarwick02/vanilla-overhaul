@@ -23,6 +23,9 @@ import java.util.stream.Stream;
 public class UnbreakableMixin {
     @Inject(method = "damage(ILnet/minecraft/util/math/random/Random;Lnet/minecraft/server/network/ServerPlayerEntity;)Z", at = @At(value = "HEAD"))
     private void makeUnbreakable(int amount, Random random, ServerPlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
+        // Check if this feature is enabled in the config
+        if (!VanillaOverhaulMod.CONFIG.unbreakableItems) return;
+
         // Get the reference to this item as an ItemStack (we reference this a lot, so its worth to store)
         ItemStack item = (ItemStack) (Object) this;
 
