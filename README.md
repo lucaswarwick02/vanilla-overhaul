@@ -1,4 +1,4 @@
-# Fabric Example Mod
+# Vanilla Overhaul Mod
 
 ## Change Log
 The following are the changes that you will find in this mod, these changes are small and can be ignored if you want!
