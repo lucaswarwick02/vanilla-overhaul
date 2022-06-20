@@ -7,6 +7,10 @@ The following are the changes that you will find in this mod, these changes are 
 - **Rotten Leather:** Rotten Flesh can be smelted in any furnace into Leather.
 - **Mangrove Roots to Log:** Using 4 Mangrove Roots you can craft 1 Mangrove Log, as the Roots (as of 1.19) can only be used as a fuel
 - **Moss to Grass:** Using 1 Moss Carpet and 1 Dirt block you can craft a Grass block.
+- **Compressed Blocks:** Can craft a compressed version of some blocks, from 4 of the original. Incredibly useful for mass storage units! 
+  - Dirt
+  - Cobblestone
+  - Netherrack
 
 ### Optional Changes
 Optional changes are disabled by default, but can be enabled inside this mod's configuration file, but changing the associated value from `false` to `true`.

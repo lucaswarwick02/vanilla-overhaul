@@ -4,7 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,9 +25,17 @@ public class VanillaOverhaulMod implements ModInitializer {
 	private static File CONFIG_PATH = FabricLoader.getInstance().getConfigDir().toFile();
 	private static String CONFIG_FILE_NAME = "vanillaOverhaul.json";
 
+	public static final Item COMPRESSED_DIRT = new Item(new FabricItemSettings().group(ItemGroup.MISC));
+	public static final Item COMPRESSED_COBBLESTONE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
+	public static final Item COMPRESSED_NETHERRACK = new Item(new FabricItemSettings().group(ItemGroup.MISC));
+
 	@Override
 	public void onInitialize() {
 		LoadConfig();
+
+		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_dirt"), COMPRESSED_DIRT);
+		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_cobblestone"), COMPRESSED_COBBLESTONE);
+		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_netherrack"), COMPRESSED_NETHERRACK);
 	}
 
 	/**
