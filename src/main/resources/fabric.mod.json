@@ -4,12 +4,12 @@
   "version": "${version}",
 
   "name": "Vanilla Overhaul",
-  "description": "Change Log: \n - Smelt rotten flesh into leather",
+  "description": "Change Log: \n- Smelt rotten flesh into leather\n - All items are Unbreakable",
   "authors": [
     "Lucas Warwick (HermitTheFrog)"
   ],
   "contact": {
-    "homepage": "https://lucaswarwick02.github.io/portfolio/",
+    "homepage": "https://lucaswarwick02.github.io/online-resume/",
     "sources": "https://github.com/lucaswarwick02/vanilla-overhaul"
   },
 

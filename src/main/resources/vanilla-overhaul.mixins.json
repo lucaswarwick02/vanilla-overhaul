@@ -6,7 +6,7 @@
   "mixins": [
   ],
   "client": [
-    "VanillaOverhaulMixin"
+    "UnbreakableMixin"
   ],
   "injectors": {
     "defaultRequire": 1
