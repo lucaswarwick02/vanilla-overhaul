@@ -16,7 +16,7 @@ The following are the changes that you will find in this mod, these changes are 
   - Tuff
   - Sand
   - Gravel
-  - Deepslate
+  - Cobbled Deepslate
   - Netherrack
   - Basalt
   - Blackstone
