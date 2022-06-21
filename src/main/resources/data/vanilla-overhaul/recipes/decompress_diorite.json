@@ -5,11 +5,11 @@
   ],
   "key": {
     "#": {
-      "item": "vanilla-overhaul:compressed_granite"
+      "item": "vanilla-overhaul:compressed_diorite"
     }
   },
   "result": {
-    "item": "minecraft:granite",
+    "item": "minecraft:diorite",
     "count": 4
   }
 }
