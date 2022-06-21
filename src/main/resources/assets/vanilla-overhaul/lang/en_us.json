@@ -1,5 +1,14 @@
 {
   "item.vanilla-overhaul.compressed_dirt": "Compressed Dirt",
   "item.vanilla-overhaul.compressed_cobblestone": "Compressed Cobblestone",
-  "item.vanilla-overhaul.compressed_netherrack": "Compressed Netherrack"
+  "item.vanilla-overhaul.compressed_deepslate": "Compressed Deepslate",
+  "item.vanilla-overhaul.compressed_granite": "Compressed Granite",
+  "item.vanilla-overhaul.compressed_diorite": "Compressed Diorite",
+  "item.vanilla-overhaul.compressed_Andesite": "Compressed Andesite",
+  "item.vanilla-overhaul.compressed_tuff": "Compressed Tuff",
+  "item.vanilla-overhaul.compressed_gravel": "Compressed Gravel",
+  "item.vanilla-overhaul.compressed_sand": "Compressed Sand",
+  "item.vanilla-overhaul.compressed_netherrack": "Compressed Netherrack",
+  "item.vanilla-overhaul.compressed_basalt": "Compressed Basalt",
+  "item.vanilla-overhaul.compressed_blackstone": "Compressed Blackstone"
 }
