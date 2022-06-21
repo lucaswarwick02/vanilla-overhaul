@@ -5,14 +5,27 @@ import com.google.gson.GsonBuilder;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.loot.v2.FabricLootPoolBuilder;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.boss.WitherEntity;
+import net.minecraft.entity.mob.WitherSkeletonEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Items;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.provider.number.BinomialLootNumberProvider;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.text.html.parser.Entity;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -40,6 +53,9 @@ public class VanillaOverhaulMod implements ModInitializer {
 	public static final Item COMPRESSED_BASALT = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 	public static final Item COMPRESSED_BLACKSTONE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 
+	// Loot Table Identifiers
+	private static final Identifier WITHER_SKELETON_SKULL_LOOT_TABLE_ID = Blocks.COAL_ORE.getLootTableId();
+
 	@Override
 	public void onInitialize() {
 		LoadConfig();
@@ -58,6 +74,26 @@ public class VanillaOverhaulMod implements ModInitializer {
 		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_netherrack"), COMPRESSED_NETHERRACK);
 		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_basalt"), COMPRESSED_BASALT);
 		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_blackstone"), COMPRESSED_BLACKSTONE);
+
+		// Loot Table Editing
+		LootTableEvents.MODIFY.register(((resourceManager, lootManager, id, tableBuilder, source) -> {
+			// Bonus Blaze Rod Chance from Blaze
+			if (EntityType.BLAZE.getLootTableId().equals(id)) {
+				LootPool.Builder skullPool = LootPool.builder().with(ItemEntry.builder(Items.BLAZE_ROD)).conditionally(RandomChanceLootCondition.builder(VanillaOverhaulMod.CONFIG.blazeRodChance));
+				tableBuilder.pool(skullPool);
+			}
+			// Bonus Ender Pearl Chance from Enderman
+			if (EntityType.ENDERMAN.getLootTableId().equals(id)) {
+				LootPool.Builder skullPool = LootPool.builder().with(ItemEntry.builder(Items.ENDER_PEARL)).conditionally(RandomChanceLootCondition.builder(VanillaOverhaulMod.CONFIG.enderPearlChance));
+				tableBuilder.pool(skullPool);
+			}
+			// Bonus Wither Skeleton Skull Chance from Wither Skeleton
+			if (EntityType.WITHER_SKELETON.getLootTableId().equals(id)) {
+				LootPool.Builder skullPool = LootPool.builder().with(ItemEntry.builder(Items.WITHER_SKELETON_SKULL)).conditionally(RandomChanceLootCondition.builder(VanillaOverhaulMod.CONFIG.witherSkeletonSkullChance));
+				tableBuilder.pool(skullPool);
+			}
+		}));
+
 	}
 
 	/**

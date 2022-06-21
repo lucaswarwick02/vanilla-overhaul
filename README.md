@@ -25,16 +25,18 @@ The following are the changes that you will find in this mod, these changes are 
 Optional changes are disabled by default, but can be enabled inside this mod's configuration file, but changing the associated value from `false` to `true`.
 - **Unbreakable Items:** Whenever you attempt to damage an item, it will instantly become unbreakable. This is quite an OP feature, but is good if you dont want to worry about having mending.
   - Config ID: `unbreakableItems`
+- **Increased Rare Loot Chance:** Yes it is cheating. But modding is cheating so I'll allow it.
+  - Blaze Rods = 50%
+    - Config ID: `blazeRodChance`
+  - Ender Pearls = 50%
+    - Config ID: `enderPearlChance`
+  - Wither Skulls = 10%
+    - Config ID: `witherSkeletonSkullChance`
 
 ### Future Changes
 The following are changes that I plan to add in the future, let me know if there are any of your changes that you think I should add!
-- **Increased Rare Loot Chance:** Yes it is cheating. But modding is cheating so I'll allow it.
-  - Blaze Rods
-  - Ender Pearls
-  - Wither Skulls
-<!---
+
 I have no changes in mind! Please suggest some <3
--->
 
 ## License
 This project is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
