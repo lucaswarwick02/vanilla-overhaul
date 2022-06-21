@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "vanilla-overhaul:compressed_sand"
+    }
+  },
+  "result": {
+    "item": "minecraft:sand",
+    "count": 4
+  }
+}

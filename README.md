@@ -14,6 +14,7 @@ The following are the changes that you will find in this mod, these changes are 
   - Diorite
   - Andesite
   - Tuff
+  - Sand
   - Deepslate
   - Netherrack
 
@@ -25,7 +26,6 @@ Optional changes are disabled by default, but can be enabled inside this mod's c
 ### Future Changes
 The following are changes that I plan to add in the future, let me know if there are any of your changes that you think I should add!
 - **More Compressed Blocks:**
-  - Sand
   - Gravel
   - Basalt
   - Blackstone
