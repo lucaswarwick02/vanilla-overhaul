@@ -28,7 +28,7 @@ public class VanillaOverhaulMod implements ModInitializer {
 	// Compressed Overworld Blocks
 	public static final Item COMPRESSED_DIRT = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 	public static final Item COMPRESSED_COBBLESTONE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-	public static final Item COMPRESSED_DEEPSLATE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
+	public static final Item COMPRESSED_COBBLED_DEEPSLATE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 	public static final Item COMPRESSED_GRANITE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 	public static final Item COMPRESSED_DIORITE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 	public static final Item COMPRESSED_ANDESITE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
@@ -47,7 +47,7 @@ public class VanillaOverhaulMod implements ModInitializer {
 		// Compressed Overworld Blocks
 		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_dirt"), COMPRESSED_DIRT);
 		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_cobblestone"), COMPRESSED_COBBLESTONE);
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_deepslate"), COMPRESSED_DEEPSLATE);
+		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_cobbled_deepslate"), COMPRESSED_COBBLED_DEEPSLATE);
 		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_granite"), COMPRESSED_GRANITE);
 		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_diorite"), COMPRESSED_DIORITE);
 		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_andesite"), COMPRESSED_ANDESITE);

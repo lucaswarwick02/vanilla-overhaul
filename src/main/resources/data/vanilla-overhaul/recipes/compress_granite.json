@@ -1,14 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "key": {
-    "#": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:granite"
+    },
+    {
+      "item": "minecraft:granite"
+    },
+    {
+      "item": "minecraft:granite"
+    },
+    {
       "item": "minecraft:granite"
     }
-  },
+  ],
   "result": {
     "item": "vanilla-overhaul:compressed_granite",
     "count": 1

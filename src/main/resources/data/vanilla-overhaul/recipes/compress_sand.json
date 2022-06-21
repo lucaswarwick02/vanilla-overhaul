@@ -1,14 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "key": {
-    "#": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:sand"
+    },
+    {
+      "item": "minecraft:sand"
+    },
+    {
+      "item": "minecraft:sand"
+    },
+    {
       "item": "minecraft:sand"
     }
-  },
+  ],
   "result": {
     "item": "vanilla-overhaul:compressed_sand",
     "count": 1

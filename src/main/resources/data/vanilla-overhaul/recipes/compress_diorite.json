@@ -1,14 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "key": {
-    "#": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:diorite"
+    },
+    {
+      "item": "minecraft:diorite"
+    },
+    {
+      "item": "minecraft:diorite"
+    },
+    {
       "item": "minecraft:diorite"
     }
-  },
+  ],
   "result": {
     "item": "vanilla-overhaul:compressed_diorite",
     "count": 1
