@@ -35,8 +35,12 @@ Optional changes are disabled by default, but can be enabled inside this mod's c
 
 ### Future Changes
 The following are changes that I plan to add in the future, let me know if there are any of your changes that you think I should add!
+- **Craftable Shulker Box:** Crafted using 3 Diamonds and an Ender Chest. (Saw it on reddit as a suggestion by u/Xochaka)
+- **Craftable Ores:** Crafted using 8 Stone and the Mineral.
+- **Craftable Chainmail Armor:** Crafted using Chains.
+- **Name Tag:** No ideas yet for how to craft it, please suggest some!
 
-I have no changes in mind! Please suggest some <3
+<!--I have no changes in mind! Please suggest some <3-->
 
 ## License
 This project is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
