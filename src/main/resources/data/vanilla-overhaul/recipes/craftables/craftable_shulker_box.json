@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "X#X",
+    "   "
+  ],
+  "key":{
+    "X": {
+      "item": "minecraft:diamond"
+    },
+    "#": {
+      "item": "minecraft:ender_chest"
+    }
+  },
+  "result":{
+    "item": "minecraft:shulker_box",
+    "count": 1
+  }
+}
