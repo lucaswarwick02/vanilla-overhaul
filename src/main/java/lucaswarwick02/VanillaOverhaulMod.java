@@ -1,139 +1,119 @@
 package lucaswarwick02;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.fabricmc.fabric.api.loot.v2.FabricLootPoolBuilder;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.boss.WitherEntity;
-import net.minecraft.entity.mob.WitherSkeletonEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.provider.number.BinomialLootNumberProvider;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.swing.text.html.parser.Entity;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class VanillaOverhaulMod implements ModInitializer {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger("vanilla-overhaul");
-	public static VOConfig CONFIG;
-	private static File CONFIG_PATH = FabricLoader.getInstance().getConfigDir().toFile();
-	private static String CONFIG_FILE_NAME = "vanillaOverhaul.json";
 
 	// Compressed Overworld Blocks
-	public static final Item COMPRESSED_DIRT = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-	public static final Item COMPRESSED_COBBLESTONE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-	public static final Item COMPRESSED_COBBLED_DEEPSLATE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-	public static final Item COMPRESSED_GRANITE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-	public static final Item COMPRESSED_DIORITE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-	public static final Item COMPRESSED_ANDESITE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-	public static final Item COMPRESSED_TUFF = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-	public static final Item COMPRESSED_SAND = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-	public static final Item COMPRESSED_GRAVEL = new Item(new FabricItemSettings().group(ItemGroup.MISC));
+	public static final Item COMPRESSED_DIRT = new Item(new FabricItemSettings());
+	public static final Item COMPRESSED_COBBLESTONE = new Item(new FabricItemSettings());
+	public static final Item COMPRESSED_COBBLED_DEEPSLATE = new Item(new FabricItemSettings());
+	public static final Item COMPRESSED_GRANITE = new Item(new FabricItemSettings());
+	public static final Item COMPRESSED_DIORITE = new Item(new FabricItemSettings());
+	public static final Item COMPRESSED_ANDESITE = new Item(new FabricItemSettings());
+	public static final Item COMPRESSED_TUFF = new Item(new FabricItemSettings());
+	public static final Item COMPRESSED_SAND = new Item(new FabricItemSettings());
+	public static final Item COMPRESSED_GRAVEL = new Item(new FabricItemSettings());
 	// Compressed Nether Blocks
-	public static final Item COMPRESSED_NETHERRACK = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-	public static final Item COMPRESSED_BASALT = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-	public static final Item COMPRESSED_BLACKSTONE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
+	public static final Item COMPRESSED_NETHERRACK = new Item(new FabricItemSettings());
+	public static final Item COMPRESSED_BASALT = new Item(new FabricItemSettings());
+	public static final Item COMPRESSED_BLACKSTONE = new Item(new FabricItemSettings());
 
-	// Loot Table Identifiers
-	private static final Identifier WITHER_SKELETON_SKULL_LOOT_TABLE_ID = Blocks.COAL_ORE.getLootTableId();
+	private static final ItemGroup VANILLA_OVERHAUL_GROUP = FabricItemGroup.builder()
+			.icon( () -> new ItemStack(COMPRESSED_COBBLESTONE) )
+			.displayName( Text.translatable("itemGroup.vanilla-overhaul.vo_group") )
+			.build();
 
 	@Override
 	public void onInitialize() {
-		LoadConfig();
+		VOConfig.LoadConfig();
 
-		// Compressed Overworld Blocks
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_dirt"), COMPRESSED_DIRT);
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_cobblestone"), COMPRESSED_COBBLESTONE);
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_cobbled_deepslate"), COMPRESSED_COBBLED_DEEPSLATE);
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_granite"), COMPRESSED_GRANITE);
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_diorite"), COMPRESSED_DIORITE);
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_andesite"), COMPRESSED_ANDESITE);
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_tuff"), COMPRESSED_TUFF);
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_sand"), COMPRESSED_SAND);
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_gravel"), COMPRESSED_GRAVEL);
-		// Compressed Nether Blocks
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_netherrack"), COMPRESSED_NETHERRACK);
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_basalt"), COMPRESSED_BASALT);
-		Registry.register(Registry.ITEM, new Identifier("vanilla-overhaul", "compressed_blackstone"), COMPRESSED_BLACKSTONE);
+		Registry.register( Registries.ITEM_GROUP, new Identifier("vanilla-overhaul", "vo_group") ,
+				VANILLA_OVERHAUL_GROUP );
 
-		// Loot Table Editing
+		RegisterItems();
+
+		EditLootTables();
+	}
+
+	private static void RegisterItems () {
+		// ### Compressed Overworld Blocks ###
+		// Compressed Dirt
+		Registry.register(Registries.ITEM, new Identifier("vanilla-overhaul", "compressed_dirt"), COMPRESSED_DIRT);
+
+		// Compressed Cobblestone
+		Registry.register(Registries.ITEM, new Identifier("vanilla-overhaul", "compressed_cobblestone"), COMPRESSED_COBBLESTONE);
+
+		// Compressed Cobbled Deepslate
+		Registry.register(Registries.ITEM, new Identifier("vanilla-overhaul", "compressed_cobbled_deepslate"), COMPRESSED_COBBLED_DEEPSLATE);
+
+		// Compressed Granite
+		Registry.register(Registries.ITEM, new Identifier("vanilla-overhaul", "compressed_granite"), COMPRESSED_GRANITE);
+
+		// Compressed Diorite
+		Registry.register(Registries.ITEM, new Identifier("vanilla-overhaul", "compressed_diorite"), COMPRESSED_DIORITE);
+
+		// Compressed Andesite
+		Registry.register(Registries.ITEM, new Identifier("vanilla-overhaul", "compressed_andesite"), COMPRESSED_ANDESITE);
+
+		// Compressed Tuff
+		Registry.register(Registries.ITEM, new Identifier("vanilla-overhaul", "compressed_tuff"), COMPRESSED_TUFF);
+
+		// Compressed Sand
+		Registry.register(Registries.ITEM, new Identifier("vanilla-overhaul", "compressed_sand"), COMPRESSED_SAND);
+
+		// Compressed Gravel
+		Registry.register(Registries.ITEM, new Identifier("vanilla-overhaul", "compressed_gravel"), COMPRESSED_GRAVEL);
+
+		// ### Compressed Nether Blocks ###
+		// Compressed Netherrack
+		Registry.register(Registries.ITEM, new Identifier("vanilla-overhaul", "compressed_netherrack"), COMPRESSED_NETHERRACK);
+
+		// Compressed Basalt
+		Registry.register(Registries.ITEM, new Identifier("vanilla-overhaul", "compressed_basalt"), COMPRESSED_BASALT);
+
+		// Compressed Blackstone
+		Registry.register(Registries.ITEM, new Identifier("vanilla-overhaul", "compressed_blackstone"), COMPRESSED_BLACKSTONE);
+
+	}
+
+	private static void EditLootTables () {
 		LootTableEvents.MODIFY.register(((resourceManager, lootManager, id, tableBuilder, source) -> {
 			// Bonus Blaze Rod Chance from Blaze
 			if (EntityType.BLAZE.getLootTableId().equals(id)) {
-				LootPool.Builder skullPool = LootPool.builder().with(ItemEntry.builder(Items.BLAZE_ROD)).conditionally(RandomChanceLootCondition.builder(VanillaOverhaulMod.CONFIG.blazeRodChance));
+				LootPool.Builder skullPool = LootPool.builder().with(ItemEntry.builder(Items.BLAZE_ROD)).conditionally(RandomChanceLootCondition.builder(VOConfig.CONFIG.blazeRodChance));
 				tableBuilder.pool(skullPool);
 			}
 			// Bonus Ender Pearl Chance from Enderman
 			if (EntityType.ENDERMAN.getLootTableId().equals(id)) {
-				LootPool.Builder skullPool = LootPool.builder().with(ItemEntry.builder(Items.ENDER_PEARL)).conditionally(RandomChanceLootCondition.builder(VanillaOverhaulMod.CONFIG.enderPearlChance));
+				LootPool.Builder skullPool = LootPool.builder().with(ItemEntry.builder(Items.ENDER_PEARL)).conditionally(RandomChanceLootCondition.builder(VOConfig.CONFIG.enderPearlChance));
 				tableBuilder.pool(skullPool);
 			}
 			// Bonus Wither Skeleton Skull Chance from Wither Skeleton
 			if (EntityType.WITHER_SKELETON.getLootTableId().equals(id)) {
-				LootPool.Builder skullPool = LootPool.builder().with(ItemEntry.builder(Items.WITHER_SKELETON_SKULL)).conditionally(RandomChanceLootCondition.builder(VanillaOverhaulMod.CONFIG.witherSkeletonSkullChance));
+				LootPool.Builder skullPool = LootPool.builder().with(ItemEntry.builder(Items.WITHER_SKELETON_SKULL)).conditionally(RandomChanceLootCondition.builder(VOConfig.CONFIG.witherSkeletonSkullChance));
 				tableBuilder.pool(skullPool);
 			}
 		}));
-
-	}
-
-	/**
-	 * Loads the configuration from a file
-	 * Credits to Wutdahack's 'ActuallyUnbreaking' mod
-	 */
-	public static void LoadConfig () {
-		File configFile = new File(CONFIG_PATH, CONFIG_FILE_NAME);
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		if (configFile.exists()) {
-			try {
-				FileReader fileReader = new FileReader(configFile);
-				CONFIG = gson.fromJson(fileReader, VOConfig.class);
-				fileReader.close();
-			} catch (IOException e) {
-				LOGGER.error("Could not load Vanilla Overhaul configuration file.");
-			}
-		}
-		else {
-			CONFIG = new VOConfig();
-			SaveConfig();
-		}
-	}
-
-	/**
-	 * Saves the current configuration to a file
-	 * Credits to Wutdahack's 'ActuallyUnbreaking' mod
-	 */
-	public static void SaveConfig () {
-		File configFile = new File(CONFIG_PATH, CONFIG_FILE_NAME);
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		if (!configFile.getParentFile().exists()) {
-			configFile.getParentFile().mkdir();
-		}
-		try {
-			FileWriter fileWriter = new FileWriter(configFile);
-			fileWriter.write(gson.toJson(CONFIG));
-			fileWriter.close();
-		} catch (IOException e) {
-			LOGGER.error("Could not save Vanilla Overhaul configuration file.");
-		}
 	}
 }
